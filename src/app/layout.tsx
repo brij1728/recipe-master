@@ -1,15 +1,23 @@
-import "./globals.css";
+import './globals.css';
 
-import { Inter } from "next/font/google";
-import type { Metadata } from "next";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs';
 
-const inter = Inter({ subsets: ["latin"] });
+import { Inter } from 'next/font/google';
+import type { Metadata } from 'next';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Recipe Master App",
-  description: "A comprehensive and user-friendly app for managing, creating, and discovering recipes with advanced search and sorting capabilities.",
+  title: 'Recipe Master App',
+  description:
+    'A comprehensive and user-friendly app for managing, creating, and discovering recipes with advanced search and sorting capabilities.',
 };
-
 
 export default function RootLayout({
   children,
@@ -17,8 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang='en'>
+        <body>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
