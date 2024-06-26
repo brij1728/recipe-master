@@ -7,9 +7,12 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs';
+import { Footer, Header } from '@/components';
 
 import { Inter } from 'next/font/google';
+import Loading from './loading';
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,14 +30,19 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang='en'>
-        <body>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {children}
+        <body className={inter.className}>
+          <Header />
+          <Suspense fallback={<Loading />}>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <main>{children}</main>
+          </Suspense>
+          <SignedOut></SignedOut>
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
