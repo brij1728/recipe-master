@@ -1,11 +1,11 @@
 export const MenuItems = [
   {
-    name: 'New Recipes',
-    link: '/add-recipes',
+    name: 'Add Recipes',
+    link: '/recipes/add-recipes',
   },
   {
     name: 'Categories',
-    link: '/categories',
+    link: '/recipes/categories',
   },
   {
     name: 'Recipes',
