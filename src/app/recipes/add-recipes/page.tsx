@@ -1,7 +1,12 @@
+import { AddRecipeForm } from '@/components';
 import React from 'react';
 
 const AddRecipes = () => {
-  return <div>page</div>;
+  return (
+    <div>
+      <AddRecipeForm />
+    </div>
+  );
 };
 
 export default AddRecipes;
